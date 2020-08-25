@@ -13,22 +13,22 @@ const Home = () => {
   return (
       <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/products">Products</Link>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-danger mb-3">
+          <div className="container">
+            <ul className="navbar-nav mr-auto" id="navbarSupportedContent">
+            <li className="nav-item">
+              <Link to="/products" className="nav-link text-white" >Products</Link>
             </li>
-            <li>
-              <Link to="/categories">Categories</Link>
+            <li className="nav-item">
+              <Link to="/categories" className="nav-link text-white">Categories</Link>
             </li>
-            <li>
-              <Link to="/orders">Orders</Link>
+            <li className="nav-item">
+              <Link to="/orders" className="nav-link text-white">Orders</Link>
             </li>
           </ul>
+          </div>
         </nav>
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/products">
             <Product />

@@ -1,4 +1,5 @@
 import React from "react";
+// import "./App.css";
 
 import Home from "./components/Home";
 
@@ -10,6 +11,7 @@ const App = () => {
         <Home />
     </div>
   );
+  
 };
 
 export default App;
