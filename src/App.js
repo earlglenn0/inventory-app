@@ -1,12 +1,13 @@
-import React from 'react';
-import Navbar from './Navbar.js';
+import React from "react";
 
-function App() {
+import Home from "./components/Home";
+
+const App = () => {
   return (
-    <div className="App">
-      <Navbar />
+    <div>
+      <Home />
     </div>
   );
-}
+};
 
 export default App;
