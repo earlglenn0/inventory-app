@@ -1,17 +1,14 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 
-class ProductForm extends PureComponent {
+class CategoryForm extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      productForm: {
-        productName: "",
-        category: "",
+      categoryForm: {
+        categoryName: "",
         status: "",
-        price: "",
-        stock: "",
       },
     };
   }
@@ -58,8 +55,8 @@ class ProductForm extends PureComponent {
   // };
 
   render() {
-    const { productForm } = this.state;
-    const { productName, category, price, stock, status } = productForm;
+    const { categoryForm } = this.state;
+    const { categoryName, status } = categoryForm;
 
     return (
       <div className="mb-3">
@@ -67,35 +64,11 @@ class ProductForm extends PureComponent {
           <div className="row form-group">
             <div className="col">
               <input
-                id="productName"
+                id="categoryName"
                 type="text"
                 className="form-control"
-                placeholder="Product Name"
+                placeholder="Category Name"
                 // value={name}
-                onChange={this.handleChange}
-                required
-              />
-            </div>
-            <div className="col">
-              <input
-                id="category"
-                type="text"
-                className="form-control"
-                placeholder="Category"
-                // value={userName}
-                onChange={this.handleChange}
-                required
-              />
-            </div>
-          </div>
-          <div className="row form-group">
-            <div className="col">
-              <input
-                id="stock"
-                type="email"
-                className="form-control"
-                placeholder="Stock"
-                // value={email}
                 onChange={this.handleChange}
                 required
               />
@@ -131,4 +104,4 @@ class ProductForm extends PureComponent {
 //   };
 // };
 
-export default ProductForm;
+export default CategoryForm;
