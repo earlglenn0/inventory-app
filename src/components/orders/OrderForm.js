@@ -62,6 +62,7 @@ class OrderForm extends PureComponent {
     const { recipient, product, quantity, subtotal, totalamount } = orderForm;
 
     return (
+      <div className="myContainer">
         <div className="mb-3">
           <form onSubmit={this.handleSubmit}>
             <div className="row form-group">
@@ -76,6 +77,8 @@ class OrderForm extends PureComponent {
                   required
                 />
               </div>
+              </div>
+              <div className="row form-group">
               <div className="col">
                 <input
                   id="product"
@@ -100,6 +103,8 @@ class OrderForm extends PureComponent {
                   required
                 />
               </div>
+              </div>
+              <div className="row form-group">
               <div className="col">
                 <input
                   id="subtotal"
@@ -111,6 +116,8 @@ class OrderForm extends PureComponent {
                   required
                 />
               </div>
+              </div>
+              <div className="row form-group">
               <div className="col">
                 <input
                   id="totalamount"
@@ -123,8 +130,9 @@ class OrderForm extends PureComponent {
                 />
               </div>
             </div>
-            <button className="btn btn-primary">Add</button>
+            <center><button className="btn btn-danger">Add</button></center>
           </form>
+        </div>
         </div>
       );
   }

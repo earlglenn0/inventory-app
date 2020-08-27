@@ -59,6 +59,7 @@ class CategoryForm extends PureComponent {
     const { categoryName, status } = categoryForm;
 
     return (
+      <div className="myContainer">
       <div className="mb-3">
         <form onSubmit={this.handleSubmit}>
           <div className="row form-group">
@@ -73,6 +74,8 @@ class CategoryForm extends PureComponent {
                 required
               />
             </div>
+            </div>
+            <div className="row form-group">
             <div className="col">
               <input
                 id="status"
@@ -85,8 +88,9 @@ class CategoryForm extends PureComponent {
               />
             </div>
           </div>
-          <button className="btn btn-primary">Add</button>
+          <center><button className="btn btn-danger">Add</button></center>
         </form>
+      </div>
       </div>
     );
   }

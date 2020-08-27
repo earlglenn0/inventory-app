@@ -62,6 +62,7 @@ class ProductForm extends PureComponent {
     const { productName, category, price, stock, status } = productForm;
 
     return (
+      <div className="myContainer">
       <div className="mb-3">
         <form onSubmit={this.handleSubmit}>
           <div className="row form-group">
@@ -76,6 +77,8 @@ class ProductForm extends PureComponent {
                 required
               />
             </div>
+            </div>
+            <div className="row form-group">
             <div className="col">
               <input
                 id="category"
@@ -87,8 +90,8 @@ class ProductForm extends PureComponent {
                 required
               />
             </div>
-          </div>
-          <div className="row form-group">
+            </div>
+            <div className="row form-group">
             <div className="col">
               <input
                 id="stock"
@@ -100,6 +103,8 @@ class ProductForm extends PureComponent {
                 required
               />
             </div>
+            </div>
+          <div className="row form-group">
             <div className="col">
               <input
                 id="status"
@@ -112,8 +117,9 @@ class ProductForm extends PureComponent {
               />
             </div>
           </div>
-          <button className="btn btn-primary">Add</button>
+          <center><button className="btn btn-danger">Add</button></center>
         </form>
+      </div>
       </div>
     );
   }

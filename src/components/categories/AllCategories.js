@@ -3,7 +3,7 @@ import React from "react";
 const AllCategories = () => {
   return (
     <div>
-      <table class="table table-bordered">
+      <table className="table table-bordered">
   <thead>
     <tr>
       <th scope="col">Category Name</th>
