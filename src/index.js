@@ -21,7 +21,7 @@ const store = createStore(
   applyMiddleware(sagaMiddleware, logger),
 );
 
-sagaMiddleware.run(rootSaga)
+sagaMiddleware.run(CategorySaga)
 
 ReactDOM.render(
   <Provider store={store}>
