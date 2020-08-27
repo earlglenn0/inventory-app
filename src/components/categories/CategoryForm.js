@@ -77,15 +77,18 @@ class CategoryForm extends PureComponent {
             </div>
             <div className="row form-group">
             <div className="col">
-              <input
+            <select
                 id="status"
-                type="phone"
-                className="form-control"
-                placeholder="Status"
-                // value={phone}
-                onChange={this.handleChange}
-                required
-              />
+                // onChange={this.commentHandleChange}
+                className="form-control mb-3 col-md-12"
+              >
+                <option selected disabled>
+                  Status
+                </option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+                ))}
+              </select>
             </div>
           </div>
           <center><button className="btn btn-danger">Add</button></center>
