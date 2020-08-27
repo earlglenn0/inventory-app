@@ -6,7 +6,7 @@ const AllProducts = () => {
       <table class="table table-bordered">
   <thead>
     <tr>
-      <th scope="col">Category Name</th>
+      <th scope="col">Product Name</th>
       <th scope="col">Status</th>
       <th scope="col">Price</th>
       <th scope="col">Stock</th>

@@ -12,7 +12,7 @@ import {
 const Home = () => {
   return (
       <Router>
-      <div>
+      <div class ="nav">
         <nav className="navbar navbar-expand-lg navbar-dark bg-danger mb-3">
           <div className="container">
             <ul className="navbar-nav mr-auto" id="navbarSupportedContent">
