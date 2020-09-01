@@ -3,7 +3,7 @@ import React from "react";
 import ProductForm from "./ProductForm";
 import AllProducts from "./AllProducts";
 
-const Product = () => {
+const MainProduct = () => {
   return (
     <div className="container">
       <AllProducts />
@@ -12,4 +12,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default MainProduct;

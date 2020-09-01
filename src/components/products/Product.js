@@ -1,7 +1,7 @@
 import React from "react";
 
 const Product = ({ product, dispatch }) => {
-  const { productId, productName, price, stock, status } = product;
+  const { productId, productName, categoryName, price, stock, status } = product;
 
   return (
     <div>
@@ -9,6 +9,7 @@ const Product = ({ product, dispatch }) => {
       <thead>
     <tr>
       <th scope="col">Product Name</th>
+      <th scope="col">Category</th>
       <th scope="col">Price</th>
       <th scope="col">Stock</th>
       <th scope="col">Status</th>
@@ -18,6 +19,7 @@ const Product = ({ product, dispatch }) => {
   <tbody>
           <tr>
             <td>{productName}</td>
+            <td>{categoryName}</td>
             <td>{price}</td>
             <td>{stock}</td>
             <td>{status}</td>

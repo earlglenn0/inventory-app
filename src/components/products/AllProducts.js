@@ -32,6 +32,11 @@ const AllProducts = ({ products, dispatch }) => {
   );
 };
 
-const mapStateToProps = ({ products }) => ({ products });
+const mapStateToProps = ({ products, categories }) => {
+  return {
+    products,
+    categories,
+  };
+};
 
 export default connect(mapStateToProps)(AllProducts);

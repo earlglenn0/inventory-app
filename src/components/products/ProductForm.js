@@ -8,14 +8,45 @@ class ProductForm extends PureComponent {
     this.state = {
       productForm: {
         productName: "",
-        price: "",
+        categoryName: "",
         stock: "",
+        price: "",
         status: "",
       },
     };
   }
 
-  ProductHandleChange = (e) => {
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { productForm } = this.state;
+    const { productName, categoryName, price, stock, status } = productForm;
+    const { addProduct, products } = this.props;
+
+    const productExist = products.find((product) => product.productName === productName);
+
+    if (!productExist) {
+      addProduct({
+        productName,
+        categoryName,
+        stock,
+        price,
+        status,
+        editing: false,
+      });
+    }
+
+    this.setState({
+      productForm: {
+        productName: "",
+        categoryName: "",
+        stock: "",
+        price: "",
+        status: "",
+      },
+    });
+  };
+
+  handleChange = (e) => {
     const { id, value } = e.target;
     const { productForm } = this.state;
 
@@ -27,46 +58,34 @@ class ProductForm extends PureComponent {
     });
   };
 
-  ProductHandleSave = (e) => {
-    e.preventDefault();
-    const {
-      productForm: { productName, price, stock, status },
-    } = this.state;
-    const { addProduct } = this.props;
-
-    addProduct({
-      productName,
-      price,
-      stock,
-      status,
-      editing: false,
-    });
-
-    this.setState({
-      productForm: {
-        productName,
-        price,
-        stock,
-        status,
-      },
-    });
-  };
-
   render() {
     const { categories } = this.props;
     const { productForm } = this.state;
-    const { productName, price, stock, status } = productForm;
+    const { productName, categoryName, price, stock, status } = productForm;
 
     return (
       <div className="myContainer">
       <div className="mb-3">
         <form onSubmit={this.handleSubmit}>
         <h4>New Product</h4>
+        <div className="row form-group">
+            <div className="col">
+              <input
+                id="productName"
+                type="text"
+                className="form-control"
+                placeholder="Product Name"
+                value={productName}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
+            </div>
           <div className="row form-group">
           <div className="col">
               <select
                 id="categoryName"
-                onChange={this.productHandleChange}
+                onChange={this.handleChange}
                 className="form-control col-md-12"
               >
                 <option selected disabled>
@@ -89,7 +108,7 @@ class ProductForm extends PureComponent {
                 type="text"
                 className="form-control"
                 placeholder="Price"
-                // value={name}
+                value={price}
                 onChange={this.handleChange}
                 required
               />
@@ -102,7 +121,7 @@ class ProductForm extends PureComponent {
                 type="text"
                 className="form-control"
                 placeholder="Stock"
-                // value={name}
+                value={stock}
                 onChange={this.handleChange}
                 required
               />
@@ -112,12 +131,12 @@ class ProductForm extends PureComponent {
             <div className="col">
             <select
                 id="status"
-                onChange={this.commentHandleChange}
+                onChange={this.handleChange}
                 className="form-control mb-3 col-md-12"
               >
                 
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
                 ))
               </select>
             </div>

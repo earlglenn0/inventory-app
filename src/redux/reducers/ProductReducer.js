@@ -2,6 +2,7 @@ const initialState = [
     {
       productId: "1",
       productName: "Chippy",
+      categoryName: 'Food',
       price: "8",
       stock: "12",
       status: "available",
@@ -17,6 +18,7 @@ const initialState = [
               id: new Date().toISOString(),
               ...action.payload,
             },
+            console.log(action.payload)
           ];
           case "EDIT_PRODUCT":
              return [

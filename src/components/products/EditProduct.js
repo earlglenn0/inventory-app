@@ -16,6 +16,8 @@ class EditProduct extends PureComponent {
 
     const data = {
       newProductName,
+      newPrice,
+      newStock,
       newStatus,
     };
 

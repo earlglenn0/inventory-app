@@ -17,7 +17,6 @@ import { logger } from 'redux-logger';
 import {addCategory} from './redux/sagas/CategorySaga'
 import {addProduct} from './redux/sagas/ProductSaga'
 import {addOrder} from './redux/sagas/OrderSaga'
-import { saveState, loadState } from './localStorage'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -33,7 +32,6 @@ const store = createStore(
   reducers,
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
-
 
 sagaMiddleware.run(addCategory)
 sagaMiddleware.run(CategorySaga)
