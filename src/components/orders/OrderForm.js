@@ -52,6 +52,7 @@ class OrderForm extends PureComponent {
   };
 
   render() {
+    const { products } = this.props;
     const { orderForm } = this.state;
     const { recipient, date, totalamount } = orderForm;
 
@@ -59,6 +60,7 @@ class OrderForm extends PureComponent {
       <div className="myContainer">
       <div className="mb-3">
         <form onSubmit={this.handleSubmit}>
+        <h4>New Order</h4>
           <div className="row form-group">
             <div className="col">
               <input
@@ -73,16 +75,23 @@ class OrderForm extends PureComponent {
             </div>
             </div>
             <div className="row form-group">
-            <div className="col">
-              <input
-                id="date"
-                type="text"
-                className="form-control"
-                placeholder="Date"
-                // value={name}
-                onChange={this.handleChange}
-                required
-              />
+          <div className="col">
+              <select
+                id="productName"
+                onChange={this.orderHandleChange}
+                className="form-control col-md-12"
+              >
+                <option selected disabled>
+                  Select Product
+                </option>
+                {products.map(({ productId, productName }) => {
+                  return (
+                    <option key={productId} value={productName}>
+                      {productName}
+                    </option>
+                  );
+                })}
+              </select>
             </div>
             </div>
             <div className="row form-group">
@@ -106,7 +115,12 @@ class OrderForm extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ orders }) => ({ orders });
+const mapStateToProps = ({ orders, products }) => {
+  return {
+    orders,
+    products,
+  };
+};
 
 const mapActionToProps = (dispatch) => {
   return {

@@ -53,6 +53,7 @@ class ProductForm extends PureComponent {
   };
 
   render() {
+    const { categories } = this.props;
     const { productForm } = this.state;
     const { productName, price, stock, status } = productForm;
 
@@ -60,17 +61,25 @@ class ProductForm extends PureComponent {
       <div className="myContainer">
       <div className="mb-3">
         <form onSubmit={this.handleSubmit}>
+        <h4>New Product</h4>
           <div className="row form-group">
-            <div className="col">
-              <input
-                id="productName"
-                type="text"
-                className="form-control"
-                placeholder="Product Name"
-                // value={name}
-                onChange={this.handleChange}
-                required
-              />
+          <div className="col">
+              <select
+                id="categoryName"
+                onChange={this.productHandleChange}
+                className="form-control col-md-12"
+              >
+                <option selected disabled>
+                  Select Category
+                </option>
+                {categories.map(({ categoryId, categoryName }) => {
+                  return (
+                    <option key={categoryId} value={categoryName}>
+                      {categoryName}
+                    </option>
+                  );
+                })}
+              </select>
             </div>
             </div>
             <div className="row form-group">
@@ -106,9 +115,7 @@ class ProductForm extends PureComponent {
                 onChange={this.commentHandleChange}
                 className="form-control mb-3 col-md-12"
               >
-                <option selected disabled>
-                  Status
-                </option>
+                
                 <option value="active">Active</option>
                 <option value="inactive">Inactive</option>
                 ))
@@ -123,7 +130,12 @@ class ProductForm extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ products }) => ({ products });
+const mapStateToProps = ({ products, categories }) => {
+  return {
+    products,
+    categories,
+  };
+};
 
 const mapActionToProps = (dispatch) => {
   return {

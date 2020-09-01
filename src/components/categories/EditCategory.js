@@ -36,7 +36,7 @@ class EditCategory extends PureComponent {
               <input
                 id="categoryName"
                 className="form-control"
-                placeholder="Enter Updated Category Name"
+                placeholder="Enter Category Name"
                 ref={(input) => (this.getcategoryName = input)}
                 defaultValue={categoryName}
                 required

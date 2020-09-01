@@ -13,7 +13,31 @@ class CategoryForm extends PureComponent {
     };
   }
 
-  categoryHandleChange = (e) => {
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { categoryForm } = this.state;
+    const { categoryName, status } = categoryForm;
+    const { addCategory, categories } = this.props;
+
+    const categoryExist = categories.find((category) => category.categoryName === categoryName);
+
+    if (!categoryExist) {
+      addCategory({
+        categoryName,
+        status,
+        editing: false,
+      });
+    }
+
+    this.setState({
+      categoryForm: {
+        categoryName: "",
+        status: "",
+      },
+    });
+  };
+
+  handleChange = (e) => {
     const { id, value } = e.target;
     const { categoryForm } = this.state;
 
@@ -21,27 +45,6 @@ class CategoryForm extends PureComponent {
       categoryForm: {
         ...categoryForm,
         [id]: value,
-      },
-    });
-  };
-
-  categoryHandleSave = (e) => {
-    e.preventDefault();
-    const {
-      categoryForm: { categoryName, status },
-    } = this.state;
-    const { addCategory } = this.props;
-
-    addCategory({
-      categoryName,
-      status,
-      editing: false,
-    });
-
-    this.setState({
-      categoryForm: {
-        categoryName,
-        status,
       },
     });
   };
@@ -54,6 +57,7 @@ class CategoryForm extends PureComponent {
       <div className="myContainer">
       <div className="mb-3">
         <form onSubmit={this.handleSubmit}>
+          <h4>New Category</h4>
           <div className="row form-group">
             <div className="col">
               <input
@@ -61,7 +65,7 @@ class CategoryForm extends PureComponent {
                 type="text"
                 className="form-control"
                 placeholder="Category Name"
-                // value={name}
+                value={categoryName}
                 onChange={this.handleChange}
                 required
               />
@@ -71,14 +75,14 @@ class CategoryForm extends PureComponent {
             <div className="col">
             <select
                 id="status"
-                onChange={this.commentHandleChange}
+                onChange={this.handleChange}
                 className="form-control mb-3 col-md-12"
               >
-                <option selected disabled>
+                <option disabled>
                   Status
                 </option>
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
                 ))
               </select>
             </div>

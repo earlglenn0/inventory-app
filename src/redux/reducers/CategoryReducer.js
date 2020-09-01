@@ -9,8 +9,10 @@ const initialState = [
 const CategoryReducer = (state = initialState, action) => {
     switch (action.type) {
       case "ADD_CATEGORY":
+        console.log(action.payload)
          return [
            ...state,
+           
            {
              id: new Date().toISOString(),
              ...action.payload,
