@@ -1,44 +1,37 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const AllOrders = () => {
+import EditOrder from "./EditOrder";
+import Order from "./Order";
+
+const AllOrders = ({ orders, dispatch }) => {
   return (
     <div>
-      <table className="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">Recipient</th>
-      <th scope="col">Date</th>
-      <th scope="col">Total Amount</th>
-      <th scope="col">Actions</th>
-      <th scope="col">Print</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><button>Edit</button></td>
-      <td><button>Print Receipt</button></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td><button>Edit</button></td>
-      <td><button>Print Receipt</button></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Larry the Bird</td>
-      <td>@twitter</td>
-      <td><button>Edit</button></td>
-      <td><button>Print Receipt</button></td>
-    </tr>
-  </tbody>
-</table>
+      {orders.length > 0 ? (
+        orders.map((order) => {
+          const { orderId, editing } = order;
+        
+          return (
+            <div key={orderId}>
+              {editing ? (
+                <EditOrder key={orderId} order={order} dispatch={dispatch} />
+              ) : (
+                <Order key={orderId} order={order} dispatch={dispatch} />
+              )}
+            </div>
+          );
+        })
+      ) : (
+        <h6 className="card-subtitle mb-2">
+          <strong>
+            <em>No Orders Found</em>
+          </strong>
+        </h6>
+      )}
     </div>
   );
 };
 
-export default AllOrders;
+const mapStateToProps = ({ orders }) => ({ orders });
+
+export default connect(mapStateToProps)(AllOrders);

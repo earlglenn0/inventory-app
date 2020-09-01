@@ -13,46 +13,38 @@ class CategoryForm extends PureComponent {
     };
   }
 
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const { productForm } = this.state;
-  //   const { productName, category, price, stock, status } = productForm;
-  //   const { addProduct, products } = this.props;
+  categoryHandleChange = (e) => {
+    const { id, value } = e.target;
+    const { categoryForm } = this.state;
 
-  //   const productExist = products.find((product) => product.name === name);
+    this.setState({
+      categoryForm: {
+        ...categoryForm,
+        [id]: value,
+      },
+    });
+  };
 
-  //   if (!productExist) {
-  //     addProduct({
-  //       categoryName,
-  //       category,
-  //       status,
-  //       price,
-  //       stock,
-  //     });
-  //   }
+  categoryHandleSave = (e) => {
+    e.preventDefault();
+    const {
+      categoryForm: { categoryName, status },
+    } = this.state;
+    const { addCategory } = this.props;
 
-  //   this.setState({
-  //     productForm: {
-  //       productName: "",
-  //       category: "",
-  //       status: "",
-  //       price: "",
-  //       stock: "",
-  //     },
-  //   });
-  // };
+    addCategory({
+      categoryName,
+      status,
+      editing: false,
+    });
 
-  // handleChange = (e) => {
-  //   const { id, value } = e.target;
-  //   const { productForm } = this.state;
-
-  //   this.setState({
-  //     productForm: {
-  //       ...productForm,
-  //       [id]: value,
-  //     },
-  //   });
-  // };
+    this.setState({
+      categoryForm: {
+        categoryName,
+        status,
+      },
+    });
+  };
 
   render() {
     const { categoryForm } = this.state;
@@ -79,7 +71,7 @@ class CategoryForm extends PureComponent {
             <div className="col">
             <select
                 id="status"
-                // onChange={this.commentHandleChange}
+                onChange={this.commentHandleChange}
                 className="form-control mb-3 col-md-12"
               >
                 <option selected disabled>
@@ -87,7 +79,7 @@ class CategoryForm extends PureComponent {
                 </option>
                 <option value="active">Active</option>
                 <option value="inactive">Inactive</option>
-                ))}
+                ))
               </select>
             </div>
           </div>
@@ -99,16 +91,16 @@ class CategoryForm extends PureComponent {
   }
 }
 
-// const mapStateToProps = ({ users }) => ({ users });
+const mapStateToProps = ({ categories }) => ({ categories });
 
-// const mapActionToProps = (dispatch) => {
-//   return {
-//     addUser: (payload) =>
-//       dispatch({
-//         type: "ADD_USER",
-//         payload,
-//       }),
-//   };
-// };
+const mapActionToProps = (dispatch) => {
+  return {
+    addCategory: (payload) =>
+      dispatch({
+        type: "ADD_CATEGORY",
+        payload,
+      }),
+  };
+};
 
-export default CategoryForm;
+export default connect(mapStateToProps, mapActionToProps)(CategoryForm)

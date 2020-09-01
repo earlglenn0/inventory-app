@@ -1,15 +1,59 @@
 import React from "react";
 
-import OrderForm from "./OrderForm";
-import AllOrders from "./AllOrders";
+const Order = ({ order, dispatch }) => {
+  const { orderId, recipient, date, totalamount } = order;
 
-const Category = () => {
   return (
-    <div className="container">
-      <AllOrders />
-      <OrderForm />
-    </div>
+    <div>
+      <table className="table table-bordered">
+      <thead>
+    <tr>
+      <th scope="col">Recipient</th>
+      <th scope="col">Date</th>
+      <th scope="col">Total Amount</th>
+      <th scope="col">Actions</th>
+      <th scope="col">Receipt</th>
+    </tr>
+  </thead>
+  <tbody>
+          <tr>
+            <td>{recipient}</td>
+            <td>{date}</td>
+            <td>{totalamount}</td>
+            <td>
+          <button
+            className="mx-2 text-success"
+            onClick={() =>
+              dispatch({
+                type: "EDIT_ORDER",
+                payload: orderId,
+              })
+            }
+          >
+            Edit
+          </button>
+          <button
+            className="mx-2 text-danger"
+            onClick={() =>
+              dispatch({
+                type: "DELETE_ORDER",
+                payload: orderId,
+              })
+            }
+          >
+            Delete
+          </button>
+          </td>
+          <td>
+            <button>
+              Print Receipt
+            </button>
+          </td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
   );
 };
 
-export default Category;
+export default Order;

@@ -1,36 +1,37 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const AllCategories = () => {
+import EditCategory from "./EditCategory";
+import Category from "./Category";
+
+const AllCategories = ({ categories, dispatch }) => {
   return (
     <div>
-      <table className="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">Category Name</th>
-      <th scope="col">Status</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>Mark</td>
-      <td><button>Edit</button></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Jacob</td>
-      <td><button>Edit</button></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Larry the Bird</td>
-      <td><button>Edit</button></td>
-    </tr>
-  </tbody>
-</table>
+      {categories.length > 0 ? (
+        categories.map((category) => {
+          const { categoryId, editing } = category;
+        
+          return (
+            <div key={categoryId}>
+              {editing ? (
+                <EditCategory key={categoryId} category={category} dispatch={dispatch} />
+              ) : (
+                <Category key={categoryId} category={category} dispatch={dispatch} />
+              )}
+            </div>
+          );
+        })
+      ) : (
+        <h6 className="card-subtitle mb-2">
+          <strong>
+            <em>No Categories Found</em>
+          </strong>
+        </h6>
+      )}
     </div>
   );
 };
 
-export default AllCategories;
+const mapStateToProps = ({ categories }) => ({ categories });
+
+export default connect(mapStateToProps)(AllCategories);

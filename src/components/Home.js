@@ -1,7 +1,7 @@
 import React from "react";
-import Product from "./products/Product";
-import Category from "./categories/Category";
-import Order from "./orders/Order";
+import Product from "./products/MainProduct";
+import Category from "./categories/MainCategory";
+import Order from "./orders/MainOrder";
 import {
   BrowserRouter as Router,
   Switch,
