@@ -22,6 +22,8 @@ function* workerGetOrders() {
   }
 }
 
+console.log('ORDER SAGA')
+
 function* workerPostOrder(action) {
   console.log('creating new order')
   try {

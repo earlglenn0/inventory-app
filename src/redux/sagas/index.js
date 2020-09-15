@@ -1,6 +1,3 @@
-
-
-
 import { 
    watchGetProducts, 
    watchPostProduct, 
@@ -35,5 +32,5 @@ export default function* () {
     watchGetOrders(),
     watchPostOrder()
   ]
-  console.log('loaded')
+  console.log('saga here')
 }

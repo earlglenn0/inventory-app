@@ -14,7 +14,7 @@ export const watchDeleteProduct = function* () {
   yield takeEvery(DELETE_PRODUCT, workerDeleteProduct)
 }
 
-// for fetching data from API
+console.log('PRODUCT SAGA')
 function* workerGetProducts() {
   console.log('get products')
   try {
@@ -27,7 +27,6 @@ function* workerGetProducts() {
   }
 }
 
-// for adding data to the API
 function* workerPostProduct(action) {
   console.log('Adding new product')
   try {

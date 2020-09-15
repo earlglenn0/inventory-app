@@ -11,6 +11,7 @@ import {
    CANCEL_CATEGORY_UPDATE } 
    from '../actions/CategoryActions'
 
+
 export const watchGetCategories = function* () {
   yield takeEvery(GET_CATEGORIES, workerGetCategories)
 }
@@ -34,6 +35,9 @@ export const watchEditCategory = function* () {
 export const watchCancelCategoryUpdate = function* () {
   yield takeEvery(CANCEL_CATEGORY_UPDATE, workerCancelCategoryUpdate)
 }
+
+console.log("CATEGORY SAGA")
+
 
 function* workerGetCategories() {
   console.log('getting categories')

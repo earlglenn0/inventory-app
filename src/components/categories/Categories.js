@@ -18,7 +18,7 @@ class Categories extends React.Component {
 
     this.state = {
       categoryForm: {
-        categoryName: '',
+        name: '',
         status: ''
       },
       searchField: '',
@@ -46,20 +46,20 @@ class Categories extends React.Component {
     e.preventDefault();
     const {
       categoryForm: {
-        categoryName,
+        name,
         status
       }
     } = this.state
     const { addCategory } = this.props
 
     addCategory({
-      categoryName,
+      name,
       status
     })
 
     this.setState({
       categoryForm: {
-        categoryName: '',
+        name: '',
         status: ''
       }
     })
