@@ -74,7 +74,7 @@ class OrderForm extends PureComponent {
               />
             </div>
             </div>
-            <div className="row form-group">
+            {/* <div className="row form-group">
           <div className="col">
               <select
                 id="productName"
@@ -93,7 +93,7 @@ class OrderForm extends PureComponent {
                 })}
               </select>
             </div>
-            </div>
+            </div> */}
             <div className="row form-group">
             <div className="col">
               <input

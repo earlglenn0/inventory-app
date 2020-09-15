@@ -7,7 +7,7 @@ const initialState = [
     },
   ];
  
- const OrderReducer = (state = initialState, action) => {
+ const OrderReducer = (state = {}, action) => {
      switch (action.type) {
        case "ADD_ORDER":
           return [

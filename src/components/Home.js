@@ -1,7 +1,7 @@
 import React from "react";
-import Product from "./products/MainProduct";
-import Category from "./categories/MainCategory";
-import Order from "./orders/MainOrder";
+import Products from "./products/MainProduct";
+import Categories from "./categories/Categories";
+import Orders from "./orders/MainOrder";
 import {
   BrowserRouter as Router,
   Switch,
@@ -31,13 +31,13 @@ const Home = () => {
 
         <Switch>
           <Route path="/products">
-            <Product />
+            <Products />
           </Route>
           <Route path="/categories">
-            <Category />
+            <Categories />
           </Route>
           <Route path="/orders">
-            <Order />
+            <Orders />
           </Route>
         </Switch>
       </div>

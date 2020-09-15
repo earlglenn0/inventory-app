@@ -1,51 +1,31 @@
 import React from "react";
 
-const Category = ({ category, dispatch }) => {
-  const { categoryId, categoryName, status } = category;
-
+const Category = (props) => {
+  console.log('@categories', props.category)
   return (
-    <div>
-      <table className="table table-bordered">
-      <thead>
-    <tr>
-      <th scope="col">Category Name</th>
-      <th scope="col">Status</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-          <tr>
-            <td>{categoryName}</td>
-            <td>{status}</td>
-            <td>
-          <button
-            className="mx-2 text-success"
-            onClick={() =>
-              dispatch({
-                type: "EDIT_CATEGORY",
-                payload: categoryId,
-              })
-            }
-          >
-            Edit
-          </button>
-          <button
-            className="mx-2 text-danger"
-            onClick={() =>
-              dispatch({
-                type: "DELETE_CATEGORY",
-                payload: categoryId,
-              })
-            }
-          >
-            Delete
-          </button>
-          </td>
-          </tr>
-        </tbody>
-        </table>
-      </div>
-  );
-};
+    <>
+      {
+       
+        <tr>
+          <th>{props.category.categoryName}</th>
+          <th>{props.category.status}</th>
+          <th>
 
-export default Category;
+              <button
+                color='default'
+                onClick={() => props.handleCategoryEdit(props.category)}
+              >Edit</button>
+              <button
+                color='secondary'
+                onClick={() => props.handleCategoryDelete(props.category)}
+              >
+                Delete
+              </button>
+          </th>
+        </tr>
+      }
+    </>
+  )
+}
+
+export default Category

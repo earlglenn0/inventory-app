@@ -1,53 +1,21 @@
-const initialState = [
-   {
-     categoryId: "2",
-     categoryName: "Food",
-     status: "Active",
-   },
- ];
+import { SET_CATEGORIES, SET_EDIT_MODE } from '../actions/CategoryActions'
 
-const CategoryReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case "ADD_CATEGORY":
-        console.log(action.payload)
-         return [
-           ...state,
-           
-           {
-             id: new Date().toISOString(),
-             ...action.payload,
-           },
-         ];
-         case "EDIT_CATEGORY":
-            return [
-              ...state.map((category) =>
-                category.categoryId === action.payload
-                  ? {
-                      ...category,
-                      editing: !category.editing,
-                    }
-                  : category
-              ),
-            ];
+const CategoryReducer = (state = [], action) => {
+  switch(action.type) {
+    case SET_CATEGORIES:
+      return [...state, action.value]
+    case SET_EDIT_MODE: {
+      const categories = (state || []).map(x => {
+        if(x.id === action.value.id) {
+          x.editMode = action.value.editMode
+        }
+        return {...x}
+      })
+      return [...categories]
       
-          case "DELETE_CATEGORY":
-            return [...state.filter((category) => category.categoryId !== action.payload)];
-      
-          case "UPDATE_CATEGORY":
-            return state.map((category) => {
-              if (category.categoryId === action.categoryId) {
-                const { newCategoryName, newStatus } = action.data;
-                return {
-                  ...category,
-                  categoryName: newCategoryName,
-                  status: newStatus,
-                  editing: !category.editing,
-                };
-              } else return category;
-            });
-      
-          default:
-            return state;
-     }
-  };
-  export default CategoryReducer;
+    }
+    default: return state
+  }
+}
+
+export default CategoryReducer

@@ -9,7 +9,7 @@ const initialState = [
     },
   ];
  
- const ProductReducer = (state = initialState, action) => {
+ const ProductReducer = (state = {}, action) => {
      switch (action.type) {
        case "ADD_PRODUCT":
           return [

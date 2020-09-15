@@ -1,62 +1,10 @@
-import React, { PureComponent } from "react";
-import { connect } from "react-redux";
+import React from "react";
 
-class CategoryForm extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      categoryForm: {
-        categoryName: "",
-        status: "",
-      },
-    };
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const { categoryForm } = this.state;
-    const { categoryName, status } = categoryForm;
-    const { addCategory, categories } = this.props;
-
-    const categoryExist = categories.find((category) => category.categoryName === categoryName);
-
-    if (!categoryExist) {
-      addCategory({
-        categoryName,
-        status,
-        editing: false,
-      });
-    }
-
-    this.setState({
-      categoryForm: {
-        categoryName: "",
-        status: "",
-      },
-    });
-  };
-
-  handleChange = (e) => {
-    const { id, value } = e.target;
-    const { categoryForm } = this.state;
-
-    this.setState({
-      categoryForm: {
-        ...categoryForm,
-        [id]: value,
-      },
-    });
-  };
-
-  render() {
-    const { categoryForm } = this.state;
-    const { categoryName, status } = categoryForm;
-
+const CategoryForm = (props) => {
     return (
       <div className="myContainer">
       <div className="mb-3">
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <h4>New Category</h4>
           <div className="row form-group">
             <div className="col">
@@ -65,46 +13,30 @@ class CategoryForm extends PureComponent {
                 type="text"
                 className="form-control"
                 placeholder="Category Name"
-                value={categoryName}
-                onChange={this.handleChange}
+                value={props.categoryForm.categoryName}
+                onChange={props.handleInputChange}
                 required
               />
             </div>
             </div>
             <div className="row form-group">
             <div className="col">
-            <select
+              <input
                 id="status"
-                onChange={this.handleChange}
-                className="form-control mb-3 col-md-12"
-              >
-                <option disabled>
-                  Status
-                </option>
-                <option value="Active">Active</option>
-                <option value="Inactive">Inactive</option>
-                ))
-              </select>
+                type="text"
+                className="form-control"
+                placeholder="Status"
+                value={props.categoryForm.status}
+                onChange={props.handleInputChange}
+                required
+              />
             </div>
-          </div>
-          <center><button className="btn btn-danger">Add</button></center>
+            </div>
+          <center><button className="btn btn-danger" onClick={props.handleCategorySave} >Add</button></center>
         </form>
       </div>
       </div>
     );
   }
-}
-
-const mapStateToProps = ({ categories }) => ({ categories });
-
-const mapActionToProps = (dispatch) => {
-  return {
-    addCategory: (payload) =>
-      dispatch({
-        type: "ADD_CATEGORY",
-        payload,
-      }),
-  };
-};
-
-export default connect(mapStateToProps, mapActionToProps)(CategoryForm)
+  
+export default CategoryForm
